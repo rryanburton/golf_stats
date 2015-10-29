@@ -60,8 +60,8 @@ def fill_data(d):
         d['adj_score'] = adj_scores
 
         # use only last 20 rounds
-        end = i + 1  # pandas does not include endpoint
-        round_handicap_index = calc_handicap(d[-20:end])
+        last = i + 1  # since pandas does not include endpoint
+        round_handicap_index = calc_handicap(d[-20: last])
         handicap_indexes.append(round_handicap_index)
         pre_round_index = round_handicap_index
 
