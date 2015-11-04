@@ -21,6 +21,11 @@ def get_data(golfer):
     return pandas.read_csv(file_name, parse_dates=['date'])
 
 
+def save_data(d, golfer):
+    file_name = golfer + '.csv'
+    d.to_csv(file_name, float_format='%.1f')
+
+
 def new_score(golfer):
     print('add new score')
     course = [
@@ -36,6 +41,7 @@ def new_score(golfer):
     putts = [input('hole ' + str(i) + ': ') for i in holes]
 
     scorecard = course + scores + putts
+    return scorecard
 
 
 def fill_data(d):
@@ -68,11 +74,6 @@ def fill_data(d):
     d['hindex'] = handicap_indexes
 
     return d
-
-
-def save_data(d, golfer):
-    file_name = golfer + '.csv'
-    d.to_csv(file_name, float_format='%.1f')
 
 
 def calc_handicap(d):
