@@ -32,7 +32,8 @@ def new_score(golfer):
         input('date: '),
         input('course: '),
         input('rating: '),
-        input('slope: ')]
+        input('slope: ')
+    ]
 
     holes = [i for i in range(1, 19)]
     print('enter scores')
@@ -81,7 +82,8 @@ def calc_handicap(d):
     num_of_scores = len(diffs)
     diffs_used_table = {
         5: 1, 6: 1, 7: 2, 8: 2, 9: 3, 10: 3, 11: 4, 12: 4,
-        13: 5, 14: 5, 15: 6, 16: 6, 17: 7, 18: 8, 19: 9, 20: 10}
+        13: 5, 14: 5, 15: 6, 16: 6, 17: 7, 18: 8, 19: 9, 20: 10
+    }
     if num_of_scores < 5:
         return 50.0
     else:
