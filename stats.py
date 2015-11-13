@@ -21,9 +21,9 @@ def get_data(golfer):
     return pandas.read_csv(file_name, parse_dates=['date'])
 
 
-def save_data(d, golfer):
+def save_data(data, golfer):
     file_name = golfer + '.csv'
-    d.to_csv(file_name, float_format='%.1f')
+    data.to_csv(file_name, float_format='%.1f')
 
 
 def new_score(golfer):
@@ -93,8 +93,8 @@ def calc_handicap(d):
     return sum(diffs) / len(diffs) * .96
 
 
-def average(s):
-    return s.sum()/len(s)
+def average(series):
+    return series.sum()/len(s)
 
 
 def ema(series, period):
@@ -102,8 +102,9 @@ def ema(series, period):
 
 
 def print_handicap(name):
-    d = fill_data(get_data(name))
-    print(name + "'s handicap: " + str(d['hindex'][len(d)-1])[:4])
+    data = fill_data(get_data(name))
+    handicap = str(data['hindex'][len(data)-1])[:4]
+    print(name + "'s handicap: " + handicap)
 
 
 def print_stats(name):
