@@ -110,14 +110,14 @@ def print_handicap(name):
 def print_stats(name):
     print(name + "'s stats:")
 
-    d = fill_data(get_data(name))
-    handicap = str(d['hindex'][len(d)-1])[:4]
+    data = fill_data(get_data(name))
+    handicap = str(data['hindex'][len(data)-1])[:4]
     print('handicap: ' + handicap)
 
-    scoring_avg = str(round(ema(d['score'], 20)[len(d)-1], 1))
+    scoring_avg = str(round(sma(data['score'])[len(data)-1], 1))
     print('scoring avg: ' + scoring_avg)
 
-    putting_avg = str(round(ema(d['putts'], 20)[len(d)-1], 2))
+    putting_avg = str(round(sma(data['putts'])[len(data)-1], 2))
     print('putting avg: ' + putting_avg)
 
 
