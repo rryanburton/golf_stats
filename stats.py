@@ -54,6 +54,7 @@ def fill_data(d):
     pre_round_index = 50.0
 
     for i in range(len(d)):
+        # go through each round, one at a time
         course_handicap = round(pre_round_index * d['slope'][i] / 113, 0)
         if course_handicap < 20:
             max_score = 7
@@ -62,6 +63,7 @@ def fill_data(d):
         else:
             max_score = 9
 
+        # calculate adjusted score for current round
         adj_strokes = [min(d[c][i], max_score) for c in d.loc[:, '1':'18']]
         adj_scores[i] = (sum(adj_strokes))
         d['adj_score'] = adj_scores
