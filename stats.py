@@ -26,23 +26,31 @@ def save_data(data, golfer):
     data.to_csv(file_name, float_format='%.1f')
 
 
-def new_score(golfer):
+def add_score(golfer):
     print('add new score')
-    course = [
-        input('date: '),
+    scorecard = [
+        input('date: (yyyy-mm-dd) '),
         input('course: '),
         input('rating: '),
-        input('slope: ')
+        input('slope: '),
     ]
 
-    holes = [i for i in range(1, 19)]
+    holes = [str(i) for i in range(1, 19)]
     print('enter scores')
-    scores = [input('hole ' + str(i) + ': ') for i in holes]
-    print('enter putts')
-    putts = [input('hole ' + str(i) + ': ') for i in holes]
+    for i in holes:
+        scorecard.append(input('hole ' + i + ': '))
 
-    scorecard = course + scores + putts
-    return scorecard
+    print('enter putts')
+    for i in holes:
+        scorecard.append(input('hole ' + i + ': '))
+
+    score_csv = scorecard[0]
+    for i in range(1, len(scorecard)):
+        score_csv += ',' + scorecard[i]
+    score_csv += '\n'
+
+    with open('data/' + golfer + '.csv', 'a') as f:
+        f.write(score_csv)
 
 
 def fill_data(d):
@@ -131,3 +139,7 @@ if __name__ == "__main__":
     elif sys.argv[-1] == 'stats':
         name = sys.argv[-2]
         print_stats(name)
+    elif sys.argv[-1] == 'add':
+        add_score(argv[-2])
+    else:
+        print('error with args')
