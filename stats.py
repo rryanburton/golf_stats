@@ -47,10 +47,20 @@ def add_score(golfer):
     score_csv = scorecard[0]
     for i in range(1, len(scorecard)):
         score_csv += ',' + scorecard[i]
-    score_csv += '\n'
 
-    with open('data/' + golfer + '.csv', 'a') as f:
-        f.write(score_csv)
+    total, total_putts = 0, 0
+    for i in range(4, 22):
+        total += int(scorecard[i])
+        total_putts += int(scorecard[i+18])
+
+    print('scorecard:')
+    print(score_csv)
+    print('score: ', total)
+    print('putts: ', total_putts)
+
+    if input('correct? [y]/n: ') in ['y', 'yes', '']:
+        with open('data/' + golfer + '.csv', 'a') as f:
+            f.write(score_csv + '\n')
 
 
 def fill_data(d):
